@@ -270,8 +270,10 @@ function animate() {
 
     if (circleTriangleCollision(asteroid, player.getVertices())) {
       console.log('GAME OVER');
+      displayGameOver();
       window.cancelAnimationFrame(animationId);
       clearInterval(intervalId);
+      return;
     }
 
     // garbage collection for projectiles
@@ -305,6 +307,13 @@ function animate() {
 
   if (keys.d.pressed) player.rotation += ROTATIONAL_SPEED;
   else if (keys.a.pressed) player.rotation -= ROTATIONAL_SPEED;
+}
+
+function displayGameOver() {
+  c.fillStyle = 'red';
+  c.font = '60px Arial';
+  c.textAlign = 'center';
+  c.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
 }
 
 animate();
